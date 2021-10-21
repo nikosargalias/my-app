@@ -15,8 +15,7 @@ function App() {
   };
 
   const focusOnTextarea = () => {
-    // const textarea = document.querySelector(".js-game-textarea");
-    // textarea.focus();
+    textareaRef.current.disabled = false;
     textareaRef.current.focus();
   };
 
@@ -24,6 +23,7 @@ function App() {
     setTimeRemaining(TIMER);
     setIsGameOn(true);
     setText("");
+    focusOnTextarea();
   };
 
   const endGame = () => setIsGameOn(false);
@@ -44,12 +44,6 @@ function App() {
       }
     }
   }, [timeRemaining, isGameOn]);
-
-  useEffect(() => {
-    if (isGameOn) {
-      focusOnTextarea();
-    }
-  }, [isGameOn]);
 
   return (
     <div>
