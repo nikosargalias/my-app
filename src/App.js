@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -7,11 +7,26 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(5);
   const [isGameOn, setIsGameOn] = useState(false);
   const [wordCount, setWordCount] = useState(0);
+  const textareaRef = useRef(null);
 
   const handleChange = (e) => {
     const { value } = e.target;
     setText(value);
   };
+
+  const focusOnTextarea = () => {
+    // const textarea = document.querySelector(".js-game-textarea");
+    // textarea.focus();
+    textareaRef.current.focus();
+  };
+
+  const startGame = () => {
+    setTimeRemaining(TIMER);
+    setIsGameOn(true);
+    setText("");
+  };
+
+  const endGame = () => setIsGameOn(false);
 
   useEffect(() => {
     const words = text.split(/\ /).filter((word) => word.length > 0);
@@ -30,30 +45,17 @@ function App() {
     }
   }, [timeRemaining, isGameOn]);
 
-  const focusOnTextarea = () => {
-    const textarea = document.querySelector(".js-game-textarea");
-    textarea.focus();
-  };
-
-  const startGame = () => {
-    setTimeRemaining(TIMER);
-    setIsGameOn(true);
-    setText("");
-  };
-
   useEffect(() => {
     if (isGameOn) {
       focusOnTextarea();
     }
   }, [isGameOn]);
 
-  const endGame = () => setIsGameOn(false);
-
   return (
     <div>
       <h1>How fast do you type?</h1>
       <textarea
-        tabindex="0"
+        ref={textareaRef}
         className="js-game-textarea"
         onChange={handleChange}
         value={text}
