@@ -14,7 +14,7 @@ body {
 }
 
 button {
-  font-family: "Press Start 2P", cursive;
+  font-family: inherit;
   display: block;
   margin: 0 auto;
   border: none;
@@ -34,7 +34,7 @@ h1 {
 }
 
 textarea {
-  font-family: "Press Start 2P", cursive;
+  font-family: inherit;
   border: 3px solid black;
   width: 90%;
   margin: 0 auto;
@@ -42,4 +42,34 @@ textarea {
   height: 200px;
   background: #00b800;
   padding: 10px;
+}
+
+input {
+  font-family: inherit;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #00b800;
+  border: 3px solid black;
+  color: black;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome, Opera, and Safari */
+  color: rgb(77, 9, 9);
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgb(77, 9, 9);
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgb(77, 9, 9);
+}
+:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(77, 9, 9);
+}
+
+textarea:disabled {
+  opacity: 0.6;
 }
